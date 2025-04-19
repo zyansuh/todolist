@@ -6,12 +6,13 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import { useTodos } from '@/features/todos/hooks'
 import EditTodoModal from '@/components/EditTodoModal'
 import { Todo } from '@/features/todos/types'
+import { EventClickArg } from '@fullcalendar/core'
 
 export default function CalendarPage() {
   const { data: todos, isLoading } = useTodos()
   const [selectedTodo, setSelectedTodo] = useState<Todo | null>(null)
 
-  const handleEventClick = (info: any) => {
+  const handleEventClick = (info:EventClickArg ) => {
     const todoId = info.event.id
     const foundTodo = todos?.find((t) => t.id === todoId)
     if (foundTodo) setSelectedTodo(foundTodo)
@@ -22,12 +23,13 @@ export default function CalendarPage() {
       id: todo.id,
       title: todo.title,
       date: todo.dueDate,
-      backgroundColor: todo.completed ? '#d1d5db' : '#3b82f6',
+      backgroundColor: todo.completed ? '#9ca3af' : '#3b82f6',
+      textColor: '#fff',
       borderColor: 'transparent',
     })) || []
 
   return (
-    <div className="p-4">
+    <div className="p-4 bg-white dark:bg-gray-900 rounded-xl shadow">
       <h1 className="text-2xl font-bold mb-4 dark:text-white">📅 투두 캘린더</h1>
       {isLoading ? (
         <p>로딩 중...</p>

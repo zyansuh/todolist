@@ -1,0 +1,39 @@
+/* ✅ 오늘 날짜 셀 강조 */
+.fc-day-today {
+    background-color: #e0f2fe !important;
+    /* sky-100 */
+}
+
+/* ✅ 주말 색상 */
+.fc-day-sun {
+    background-color: #fef2f2 !important;
+    /* red-50 */
+}
+
+.fc-day-sat {
+    background-color: #f0f9ff !important;
+    /* blue-50 */
+}
+
+/* ✅ 이벤트 hover 효과 */
+.fc-event:hover {
+    opacity: 0.9;
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: 0.2s ease-in-out;
+}
+
+/* ✅ 이벤트 기본 폰트 스타일 */
+.fc-event {
+    font-size: 0.875rem;
+    /* text-sm */
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '@fullcalendar/common/main.css';
+@import '@fullcalendar/daygrid/main.css';
