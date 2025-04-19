@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import { Todo } from '@/features/todos/types'
 import { useUpdateTodo, useDeleteTodo } from '@/features/todos/hooks'
 import { motion } from 'framer-motion'
@@ -66,7 +65,6 @@ const TodoItem = ({ todo }: TodoItemProps) => {
         </div>
       </motion.li>
 
-      {/* ✏️ 수정 모달 */}
       {isEditing && <EditTodoModal todo={todo} onClose={toggleEdit} />}
     </>
   )
