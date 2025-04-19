@@ -7,6 +7,7 @@ import TodoForm from '@/components/TodoForm'
 import TodoItem from '@/components/TodoItems'
 import TabButton from '@/components/TabButton'
 import ToggleThemeButton from '@/components/ToggleThemeButton'
+import SearchInput from '@/components/SearchInput'
 import { AnimatePresence } from 'framer-motion'
 
 type FilterType = 'all' | 'completed' | 'incomplete'
@@ -17,6 +18,7 @@ export default function HomePage() {
 
   const initialFilter = (searchParams.get('filter') as FilterType) || 'all'
   const [filter, setFilter] = useState<FilterType>(initialFilter)
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     router.replace(`/?filter=${filter}`)
@@ -30,6 +32,7 @@ export default function HomePage() {
       if (filter === 'incomplete') return !todo.completed
       return true
     })
+    .filter((todo) => todo.title.toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => Number(a.completed) - Number(b.completed))
 
   if (isLoading) return <p>로딩 중...</p>
@@ -37,12 +40,17 @@ export default function HomePage() {
 
   return (
     <div>
+      {/* 🔘 다크모드 토글 */}
       <div className="flex justify-end mb-4">
         <ToggleThemeButton />
       </div>
 
       <h1 className="text-2xl font-bold mb-4 dark:text-white">📝 나의 투두 리스트</h1>
 
+      {/* 🔍 검색창 */}
+      <SearchInput value={search} onChange={setSearch} />
+
+      {/* 🗂 필터 탭 */}
       <div className="flex gap-2 mb-4">
         <TabButton selected={filter === 'all'} onClick={() => setFilter('all')}>
           전체
@@ -55,8 +63,10 @@ export default function HomePage() {
         </TabButton>
       </div>
 
+      {/* ➕ 입력 */}
       <TodoForm />
 
+      {/* ✅ 투두 리스트 */}
       <ul>
         <AnimatePresence>
           {filteredAndSortedTodos?.map((todo) => (
