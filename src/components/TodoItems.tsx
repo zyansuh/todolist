@@ -32,11 +32,11 @@ const TodoItem = ({ todo }: TodoItemProps) => {
   return (
     <>
       <motion.li
-        variants={fadeIn}
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        className="flex justify-between items-center bg-white rounded p-3 mb-2 shadow"
+         variants={fadeIn}
+         initial="hidden"
+         animate="visible"
+         exit="hidden"
+         className="flex justify-between items-center bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded p-3 mb-2 shadow"
       >
         <label className="flex items-center gap-2 cursor-pointer">
           <input

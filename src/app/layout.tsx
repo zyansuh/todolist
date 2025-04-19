@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ko">
+    <html lang="ko" className='dark'>
       <body className="bg-gray-100 text-gray-900">
         <QueryClientProvider client={queryClient}>
           <main className="max-w-xl mx-auto p-4">{children}</main>
